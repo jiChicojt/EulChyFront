@@ -7,12 +7,16 @@
   <mat-card>
     <mat-card-title> Ingrese la ecuación a resolver </mat-card-title>
     <mat-card-content>
-      <form (ngSubmit)="solve()" #EquationForm="ngForm">
-        <mat-form-field appearance="legacy">
-          <mat-label>Ecuación</mat-label>
-          <input matInput [(ngModel)]="equation.equation" placeholder="x^(2)y''+xy'-y=0" name="equation">
+      <form [formGroup]="equationForm" (ngSubmit)="solve()">
+        <p>{{equationForm.status}}</p>
+        <mat-form-field appearance="fill">
+            <input matInput formControlName="equ" placeholder="x^(2)y''+xy'-y=0" name="equation">
         </mat-form-field>
-        <button type="submit" mat-raised-button color="accent">Resolver</button>
+        <div *ngFor="let validation of validationMessages.equ" >
+            <mat-label *ngIf="!equationForm.valid" style="color: #ff2f37">{{ validation.message }}</mat-label>
+          </div>
+        <button type="submit" mat-raised-button color="accent" [disabled]="!equationForm.valid">Resolver</button>
+
       </form>
     </mat-card-content>
   </mat-card>
