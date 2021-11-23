@@ -16,7 +16,7 @@ const validateCauchyEuler:  ValidatorFn = (fGroup: FormGroup) =>{
   for (let i =0; i<(equationList.length-1);i++){
     console.log("paso2")
     const quotes= (equationList[i].match(/'/g)||[]).length
-    const number = "("+quotes.toString()+")"
+    const number = "^("+quotes.toString()+")"
     const exponent = (equationList[i].match(new RegExp(number, "g"))||[])
     console.log(parseInt(exponent))
     if(parseInt(exponent)=== quotes){
