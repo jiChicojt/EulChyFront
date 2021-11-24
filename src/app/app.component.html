@@ -19,16 +19,18 @@
       </form>
     </mat-card-content>
   </mat-card>
-  <h3 [hidden]="mostrar">Para resolver la ecuación debemos realizar una sustitución:</h3>
-  <p [hidden]="mostrar">y = x^m</p>
-  <h3 [hidden]="mostrar"> Derivaremos entonces esta sustitución la cantidad de veces necesaria, dependiendo del grado de la ecuación, el cual en este caso es {{this.grad}}</h3>
-  <div style="white-space: pre-line">{{this.respuesta}} </div>
-  <h3 [hidden]="mostrar">Reemplazamos entonces en nuestra ecuación original</h3>
-  <p [hidden]="mostrar">{{this.sust}}</p>
-  <h3 [hidden]="mostrar">Obteniento la siguiente ecuación auxiliar</h3>
-  <p style="white-space: pre-line">{{this.auxEq}} </p>
-  <h3 [hidden]="mostrar">Obteniendo entonces los siguientes valores de m</h3>
-  <p style="white-space: pre-line">{{this.answ}}</p>
+  <h3 [hidden]="mostrar" align="center">Para resolver la ecuación debemos realizar una sustitución:</h3>
+    <p [hidden]="mostrar">y = x^m</p>
+  <h3 [hidden]="mostrar" align="center"> Derivaremos entonces esta sustitución la cantidad de veces necesaria, dependiendo del grado de la ecuación, el cual en este caso es {{this.grad}}</h3>
+    <div style="white-space: pre-line">{{this.respuesta}} </div>
+  <h3 [hidden]="mostrar" align="center">Reemplazamos entonces en nuestra ecuación original</h3>
+    <p [hidden]="mostrar">{{this.sust}}</p>
+  <h3 [hidden]="mostrar" align="center">Obteniento la siguiente ecuación auxiliar</h3>
+    <p style="white-space: pre-line">{{this.auxEq}} </p>
+  <h3 [hidden]="mostrar" align="center">Obteniendo entonces los siguientes valores de m</h3>
+    <p style="white-space: pre-line">{{this.answ}}</p>
+  <h3 [hidden]="mostrar" align="center">Siendo la solución: </h3>
+    <p style="white-space: pre-line">{{this.sltn}}</p>
   <!-- Footer -->
   <footer>
 

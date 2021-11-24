@@ -54,7 +54,7 @@ export class AppComponent implements OnInit{
   sust ='';
   auxEq = '';
   answ = '';
-
+  sltn = '';
   validationMessages ={
     equ:[
       {type: 'required', message: 'Es obligatorio ingresar la ecuación'},
@@ -77,6 +77,7 @@ export class AppComponent implements OnInit{
       data => {
         this.mostrar = false;
         this.grad = grado.toString()
+        this.respuesta= '';
         const derivadas = data.steps.derivatives.reverse();
         for(let i =0; i<(data.steps.derivatives.length-1);i++){
           const deriv = i+1
@@ -85,18 +86,20 @@ export class AppComponent implements OnInit{
         this.sust = data.steps.substitution;
         this.auxEq = data.steps.auxEq + "\n= " + data.steps.xAuxEq;
 
+        this.answ = ''
+
         var solutions = data.steps.solutions.split(',')
-        console.log(solutions)
+        console.log(data)
         solutions = solutions.map((item: string) => {
           return item.replace('[', '').replace("]", "").replace("'", "").replace("'", "").replace(" ", "")
         })
-        console.log(solutions)
 
         for (let sol in solutions) {
           console.log(sol)
           this.answ += "m=" + solutions[sol] + "\n";
         }
         console.log(this.answ)
+        this.sltn = data.solution
       },
       error => {
         console.log(error)
