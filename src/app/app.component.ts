@@ -86,6 +86,7 @@ export class AppComponent implements OnInit{
         this.auxEq = data.steps.auxEq + "\n= " + data.steps.xAuxEq;
 
         var solutions = data.steps.solutions.split(',')
+        console.log(solutions)
         solutions = solutions.map((item: string) => {
           return item.replace('[', '').replace("]", "").replace("'", "").replace("'", "").replace(" ", "")
         })
@@ -93,7 +94,7 @@ export class AppComponent implements OnInit{
 
         for (let sol in solutions) {
           console.log(sol)
-          this.answ += `m = ${sol.toString()} \n`;
+          this.answ += "m=" + solutions[sol] + "\n";
         }
         console.log(this.answ)
       },
