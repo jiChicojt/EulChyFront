@@ -4,26 +4,31 @@ import {SolverService} from "./services/solver.service";
 import {Form, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 
 
+let grado=0;
 // @ts-ignore
 const validateCauchyEuler:  ValidatorFn = (fGroup: FormGroup) =>{
   console.log("paso1");
   // @ts-ignore
-  const equation1 = fGroup.get('equ').value;
-  const equation2 = equation1.replace("-","+");
+  const equation1 = fGroup.get('equ').value.split("=");
+  const sinIgual = equation1[0]
+  console.log(sinIgual)
+  const equation2 = sinIgual.replace("-","+");
   const equationList = equation2.split("+");
   let verification;
+  grado = (equationList.length-1)
 
   for (let i =0; i<(equationList.length-1);i++){
     console.log("paso2")
     const quotes= (equationList[i].match(/'/g)||[]).length
-    const number = "^("+quotes.toString()+")"
-    const exponent = (equationList[i].match(new RegExp(number, "g"))||[])
-    console.log(parseInt(exponent))
+    console.log(quotes)
+    const exponent = (equationList[i].match(new RegExp("("+quotes.toString()+")", "g"))||[])
+    console.log(exponent)
+    //console.log(parseInt(exponent))
     if(parseInt(exponent)=== quotes){
-      console.log("correcto")
+      //console.log("correcto")
       verification = null;
     } else {
-      console.log("incorrecto")
+      //console.log("incorrecto")
       verification = {equals:true};
       break;
     }
@@ -43,6 +48,12 @@ export class AppComponent implements OnInit{
   title = 'EulChy';
   equation: EquationModel = new EquationModel('')
   Hi = new FormControl("")
+  respuesta = '';
+  mostrar = true;
+  grad = '';
+  sust ='';
+  auxEq = '';
+  answ = '';
 
   validationMessages ={
     equ:[
@@ -64,6 +75,19 @@ export class AppComponent implements OnInit{
     // Verificaciones
     this.solverService.getSolution(this.equation).subscribe(
       data => {
+        this.mostrar = false;
+        this.grad = grado.toString()
+        const derivadas = data.steps.derivatives.reverse();
+        for(let i =0; i<(data.steps.derivatives.length-1);i++){
+          const deriv = i+1
+          this.respuesta += deriv + "° derivada: " + derivadas[deriv] + '\n';
+        };
+        this.sust = data.steps.substitution;
+        this.auxEq = data.steps.auxEq + "\n= " + data.steps.xAuxEq;
+        for(let i =0; i<(data.steps.solutions.length); i++){
+          this.answ += "m = "+ data.steps.solutions[i]+'\n';
+        }
+        console.log(this.answ)
         console.log(data)
       },
       error => {
