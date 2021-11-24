@@ -84,11 +84,18 @@ export class AppComponent implements OnInit{
         };
         this.sust = data.steps.substitution;
         this.auxEq = data.steps.auxEq + "\n= " + data.steps.xAuxEq;
-        for(let i =0; i<(data.steps.solutions.length); i++){
-          this.answ += "m = "+ data.steps.solutions[i]+'\n';
+
+        var solutions = data.steps.solutions.split(',')
+        solutions = solutions.map((item: string) => {
+          return item.replace('[', '').replace("]", "").replace("'", "").replace("'", "").replace(" ", "")
+        })
+        console.log(solutions)
+
+        for (let sol in solutions) {
+          console.log(sol)
+          this.answ += `m = ${sol.toString()} \n`;
         }
         console.log(this.answ)
-        console.log(data)
       },
       error => {
         console.log(error)

@@ -8,7 +8,6 @@
     <mat-card-title> Ingrese la ecuación a resolver </mat-card-title>
     <mat-card-content>
       <form [formGroup]="equationForm" (ngSubmit)="solve()">
-        <p>{{equationForm.status}}</p>
         <mat-form-field appearance="fill">
             <input matInput formControlName="equ" placeholder="x^(2)y''+xy'-y=0" name="equation">
         </mat-form-field>
