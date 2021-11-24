@@ -10,23 +10,25 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatRippleModule} from "@angular/material/core";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatRippleModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatListModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
