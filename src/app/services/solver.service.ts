@@ -12,7 +12,7 @@ export class SolverService {
   private thyHeaders
 
   constructor(private http: HttpClient) {
-    this.url = 'https://peaceful-ravine-97977.herokuapp.com/'
+    this.url = 'http://127.0.0.1:5000/'
     this.thyHeaders = new HttpHeaders().set('Content-Type', 'application-json')
   }
 
